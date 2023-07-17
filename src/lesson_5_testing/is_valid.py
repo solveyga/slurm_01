@@ -1,6 +1,6 @@
 def is_valid(value: str) -> bool:
     acc = []
-    brackets = ('()', '[]', '{}')
+    brackets = ("()", "[]", "{}")
     for ch in value:
         for br in brackets:
             if ch == br[0]:
