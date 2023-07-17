@@ -1,25 +1,28 @@
 on: [push]
 
 jobs:
-
-  Build:
+  flake8-lint:
     runs-on: ubuntu-latest
-    name: A job to test the oryks code coverage action
-
+    name: cov
     steps:
-
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: oryks code coverage action
-        id: selftest
-        uses: twyle/oryks-code-coverage@v0.1.0
+      - name: Check out source repository
+        uses: actions/checkout@v3
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
         with:
-          codedirectory: src/
-          testdirectory: tests/
-          github_token: ${{ github.token }}
-          oryks_token: ${{ secrets.ORYKS_TOKEN }}
-
-      - name: action output
-        run: |
-          echo "${{ steps.selftest.outputs.testcoverage }}"
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |  
+          python -m pip install --upgrade pip  
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with Ruff
+        run: |  
+          pip install ruff  
+          ruff --format=github --target-version=py310 .
+        continue-on-error: true
+      - name: Test with pytest
+        run: |  
+          coverage run -m pytest  -v -s
+      - name: Generate Coverage Report
+        run: |  
+          coverage report -m
