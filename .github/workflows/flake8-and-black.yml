@@ -1,4 +1,4 @@
-name: flake8 and black Lints
+name: flake8 and black lints
 
 on: [push, pull_request]
 
