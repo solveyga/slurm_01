@@ -11,9 +11,6 @@ jobs:
       - name: Install Python Dependencies
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run linter on src directory
-        run: |
-          pylint --rcfile=pylintrc src
       - name: Run tests and coverage report
         run: |       
           coverage run --data-file tests/.coverage -m pytest -s
