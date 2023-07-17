@@ -5,7 +5,7 @@ on: [push]
 jobs:
   pytest-run:
     runs-on: ubuntu-latest
-    name: Lint
+    name: Pytest run
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
