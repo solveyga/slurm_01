@@ -1,32 +1,23 @@
 name: Tests
+
 on: [push]
 
 jobs:
-  build:
-    name: Run Python Tests
+  test:
     runs-on: ubuntu-latest
-
     steps:
-
-    - uses: actions/checkout@v2
-
-    - name: Setup timezone
-      uses: zcong1993/setup-timezone@master
-      with:
-        timezone: UTC
-
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-
-    - name: Install Python dependencies
-      run: |
-        sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
-        python3 -m pip install --upgrade pip
-        pip3 install -r requirements.txt
-
-    - name: Test with pytest
-      run: |
-        pytest --exitfirst --verbose --failed-first \
-        --cov=. --cov-report html
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - uses: lpenz/ghaction-pytest-cov@v1
+      - uses: AndreMiras/coveralls-python-action@v20201129
+        with:
+          parallel: true
+          python-version: "3.11"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+  coverage-finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: AndreMiras/coveralls-python-action@v20201129
+        with:
+          parallel-finished: true
