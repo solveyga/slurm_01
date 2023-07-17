@@ -1,6 +1,6 @@
 def is_valid(value: str) -> bool:
     acc = []
-    brackets = ('()', '[]', '{}')
+    brackets = ("()", "[]", "{}")
     for ch in value:
         for br in brackets:
             if ch == br[0]:
@@ -10,4 +10,3 @@ def is_valid(value: str) -> bool:
                     return False
                 acc.pop()
     return len(acc) == 0
-

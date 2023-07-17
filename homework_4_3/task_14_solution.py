@@ -5,7 +5,7 @@ def to_string(value, indent=0):
             row = f'\n{" " * indent}{key}: {to_string(value, indent + 2)}'
             result.append(row)
     elif isinstance(value, list):
-        result.append(f'array={value}')
+        result.append(f"array={value}")
     else:
-        result.append(f'value={value}')
-    return ''.join(result)
+        result.append(f"value={value}")
+    return "".join(result)

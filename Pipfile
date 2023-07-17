@@ -8,6 +8,8 @@ coverage = "*"
 pytest = "*"
 
 [dev-packages]
+flake8 = "*"
+black = "==23.7.0"
 
 [requires]
 python_version = "3.9"

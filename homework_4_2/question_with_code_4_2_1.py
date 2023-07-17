@@ -3,7 +3,7 @@ def foo(value):
         return str(bar.value)
 
     def greet():
-        return f'Hello, {greet.value} from {greet.__name__} func'
+        return f"Hello, {greet.value} from {greet.__name__} func"
 
     if isinstance(value, str):
         greet.value = value
@@ -13,6 +13,6 @@ def foo(value):
     return bar
 
 
-foo('python')()
+foo("python")()
 
 # ответ - Hello, python from greet func, но у меня просто пустоту выдает
