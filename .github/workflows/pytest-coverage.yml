@@ -1,18 +1,25 @@
-name: CodeCov
+on: [push]
+
 jobs:
-  codecov:
+
+  Build:
     runs-on: ubuntu-latest
-    name: codecov
+    name: A job to test the oryks code coverage action
+
     steps:
-      - name: Check out source repository
-        uses: actions/checkout@v3
-      - name: Set up Python environment
-        uses: actions/setup-python@v4
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: oryks code coverage action
+        id: selftest
+        uses: twyle/oryks-code-coverage@v0.1.0
         with:
-          python-version: "3.11"
-      - name: Generate Report
+          codedirectory: src/
+          testdirectory: tests/
+          github_token: ${{ github.token }}
+          oryks_token: ${{ secrets.ORYKS_TOKEN }}
+
+      - name: action output
         run: |
-          pip install coverage
-          coverage run -m unittest
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v2
+          echo "${{ steps.selftest.outputs.testcoverage }}"
