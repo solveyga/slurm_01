@@ -1,4 +1,4 @@
-from is_valid import is_valid
+from src.lesson_5_testing.is_valid import is_valid
 
 
 def test_is_valid():

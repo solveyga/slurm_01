@@ -1,4 +1,4 @@
-from homework_4_3.task_16_substring import is_substring
+from src.homework_4_3.task_16_substring import is_substring
 
 
 def test_is_substring_literal():
