@@ -1,9 +1,11 @@
-def to_string(dict_to_string):
-    for key, value in dict_to_string.items():
-        if isinstance(value, (int, float)):
-            print(f"{key}: value={value}")
-        elif isinstance(value, list):
-            print(f"{key}: array={value}")
-        else:
-            print(f"{key}:")
-            to_string(value)
+def to_string(value, indent=0):
+    result = []
+    if isinstance(value, dict):
+        for key, value in value.items():
+            row = f'\n{" " * indent}{key}: {to_string(value, indent + 2)}'
+            result.append(row)
+    elif isinstance(value, list):
+        result.append(f"array={value}")
+    else:
+        result.append(f"value={value}")
+    return "".join(result)
