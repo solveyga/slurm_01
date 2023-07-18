@@ -1,12 +1,13 @@
+import pytest
 from src.homework_4_3.task_16_substring import is_substring
 
 
-def test_is_substring_literal():
-    assert is_substring("Hello", "ell")
-
-
-def test_is_substring_numeral():
-    assert is_substring("123456789", "2345678")
+@pytest.mark.parametrize(
+    "string, substring",
+    [("Hello", "ell"), ("123456789", "2345678"), ("fgjh)123", "h)1")],
+)
+def test_is_substring(string, substring):
+    assert is_substring(string, substring)
 
 
 def test_is_not_substring():
