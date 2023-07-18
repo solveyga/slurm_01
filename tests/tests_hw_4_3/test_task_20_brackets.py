@@ -1,4 +1,4 @@
-from src.lesson_5_testing.is_valid import is_valid
+from src.homework_4_3.task_20_brackets import is_valid
 
 
 def test_is_valid():
@@ -14,4 +14,6 @@ def test_is_not_valid():
     assert not is_valid("({[]}")
     assert not is_valid("(]")
     assert not is_valid("(")
+    assert not is_valid("{")
+    assert not is_valid("]")
     assert not is_valid("{{{{ ))))")

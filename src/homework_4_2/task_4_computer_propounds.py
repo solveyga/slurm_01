@@ -4,6 +4,7 @@ propounded_number = random.randint(0, 100)
 
 print("Число загадано!", end=" ")
 
+
 for i in range(1, 9):
     print(f"Попытка №{i}:")
     users_number = int(input())
